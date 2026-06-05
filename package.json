@@ -1,0 +1,23 @@
+{
+  "name": "opencode-0-injection",
+  "version": "0.1.0",
+  "description": "Local OpenCode plugin that prepends a priority-zero system prompt before agent prompts.",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    }
+  },
+  "private": true,
+  "scripts": {
+    "test": "node test/smoke.mjs"
+  },
+  "keywords": [
+    "opencode",
+    "plugin",
+    "system-prompt",
+    "rules"
+  ],
+  "license": "MIT"
+}
