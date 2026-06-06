@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>English</strong> |
+  <a href="README.md">English</a> |
   <a href="README.ar.md">العربية</a> |
   <a href="README.bn.md">বাংলা</a> |
   <a href="README.br.md">Português (Brasil)</a> |
@@ -20,30 +20,30 @@
   <a href="README.uk.md">Українська</a> |
   <a href="README.vi.md">Tiếng Việt</a> |
   <a href="README.zh.md">简体中文</a> |
-  <a href="README.zht.md">繁體中文</a>
+  <strong>繁體中文</strong>
 </p>
 
 # opencode-0-injection
 
-Local OpenCode server plugin that prepends a priority-zero operational prompt before the agent prompt.
+本地 OpenCode 伺服器外掛，在代理提示詞之前前置一個零優先級的操作提示詞。
 
-## Purpose
+## 用途
 
-OpenCode builds its final system prompt in this broad order:
+OpenCode 大致按以下順序建構其最終系統提示詞：
 
 ```text
 agent prompt → environment → Instructions from AGENTS.md
 ```
 
-This plugin keeps OpenCode core behavior intact, but prepends one operator-controlled prompt file at the very front:
+此外掛保持 OpenCode 核心行為不變，但在最前面前置一個由操作者控制的提示詞檔案：
 
 ```text
 0-injection-prompt → agent prompt → environment → instruction
 ```
 
-The default prompt file is `0-injection-prompt.md`.
+預設提示詞檔案為 `0-injection-prompt.md`。
 
-## OpenCode config
+## OpenCode 設定
 
 ```json
 {
@@ -58,11 +58,11 @@ The default prompt file is `0-injection-prompt.md`.
 }
 ```
 
-When this repository is checked out separately, either copy it into `~/.config/opencode/plugins/opencode-0-injection` or point the plugin entry at the absolute checkout path.
+當單獨簽出此儲存庫時，可將其複製到 `~/.config/opencode/plugins/opencode-0-injection`，或將外掛條目指向絕對簽出路徑。
 
-## Behavior
+## 行為
 
-The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps the injected prompt with markers so retries or repeated transforms do not accumulate duplicate blocks:
+此外掛使用 OpenCode 的 `experimental.chat.system.transform` 掛鉤。它用標記包裹注入的提示詞，使得重試或重複轉換不會累積重複的區塊：
 
 ```text
 <opencode-0-injection-prompt>
@@ -70,14 +70,16 @@ The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps t
 </opencode-0-injection-prompt>
 ```
 
-## Smoke test
+## 冒煙測試
 
 ```bash
 npm test
 ```
 
-The smoke test imports the plugin, runs the transform against a synthetic system prompt, and verifies this ordering:
+冒煙測試匯入此外掛，針對一個合成系統提示詞執行轉換，並驗證以下順序：
 
 ```text
 0-injection < agent prompt < environment < instruction
 ```
+
+<!-- i18n:source-hash:b60576dd761199a532b6d843576bd127703c42d60086f0dc5c2cecf018b47adb -->

@@ -1,9 +1,9 @@
 <p align="center">
-  <strong>English</strong> |
+  <a href="README.md">English</a> |
   <a href="README.ar.md">العربية</a> |
   <a href="README.bn.md">বাংলা</a> |
   <a href="README.br.md">Português (Brasil)</a> |
-  <a href="README.bs.md">Bosanski</a> |
+  <strong>Bosanski</strong> |
   <a href="README.da.md">Dansk</a> |
   <a href="README.de.md">Deutsch</a> |
   <a href="README.es.md">Español</a> |
@@ -25,25 +25,25 @@
 
 # opencode-0-injection
 
-Local OpenCode server plugin that prepends a priority-zero operational prompt before the agent prompt.
+Lokalni plugin OpenCode servera koji dodaje operativni prompt nultog prioriteta ispred prompta agenta.
 
-## Purpose
+## Svrha
 
-OpenCode builds its final system prompt in this broad order:
+OpenCode gradi svoj konačni sistemski prompt otprilike ovim redoslijedom:
 
 ```text
 agent prompt → environment → Instructions from AGENTS.md
 ```
 
-This plugin keeps OpenCode core behavior intact, but prepends one operator-controlled prompt file at the very front:
+Ovaj plugin zadržava netaknutim osnovno ponašanje OpenCode-a, ali dodaje jedan prompt fajl pod kontrolom operatera sasvim na početak:
 
 ```text
 0-injection-prompt → agent prompt → environment → instruction
 ```
 
-The default prompt file is `0-injection-prompt.md`.
+Podrazumijevani prompt fajl je `0-injection-prompt.md`.
 
-## OpenCode config
+## OpenCode konfiguracija
 
 ```json
 {
@@ -58,11 +58,11 @@ The default prompt file is `0-injection-prompt.md`.
 }
 ```
 
-When this repository is checked out separately, either copy it into `~/.config/opencode/plugins/opencode-0-injection` or point the plugin entry at the absolute checkout path.
+Kada se ovaj repozitorij preuzme zasebno, ili ga kopirajte u `~/.config/opencode/plugins/opencode-0-injection` ili usmjerite unos plugina na apsolutnu putanju preuzimanja.
 
-## Behavior
+## Ponašanje
 
-The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps the injected prompt with markers so retries or repeated transforms do not accumulate duplicate blocks:
+Plugin koristi OpenCode-ov hook `experimental.chat.system.transform`. On omotava ubačeni prompt markerima kako ponovni pokušaji ili ponovljene transformacije ne bi gomilali duplirane blokove:
 
 ```text
 <opencode-0-injection-prompt>
@@ -76,8 +76,10 @@ The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps t
 npm test
 ```
 
-The smoke test imports the plugin, runs the transform against a synthetic system prompt, and verifies this ordering:
+Smoke test uvozi plugin, pokreće transformaciju nad sintetičkim sistemskim promptom i provjerava ovaj redoslijed:
 
 ```text
 0-injection < agent prompt < environment < instruction
 ```
+
+<!-- i18n:source-hash:b60576dd761199a532b6d843576bd127703c42d60086f0dc5c2cecf018b47adb -->

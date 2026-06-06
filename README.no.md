@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>English</strong> |
+  <a href="README.md">English</a> |
   <a href="README.ar.md">العربية</a> |
   <a href="README.bn.md">বাংলা</a> |
   <a href="README.br.md">Português (Brasil)</a> |
@@ -12,7 +12,7 @@
   <a href="README.it.md">Italiano</a> |
   <a href="README.ja.md">日本語</a> |
   <a href="README.ko.md">한국어</a> |
-  <a href="README.no.md">Norsk</a> |
+  <strong>Norsk</strong> |
   <a href="README.pl.md">Polski</a> |
   <a href="README.ru.md">Русский</a> |
   <a href="README.th.md">ไทย</a> |
@@ -25,25 +25,25 @@
 
 # opencode-0-injection
 
-Local OpenCode server plugin that prepends a priority-zero operational prompt before the agent prompt.
+Lokal OpenCode-server-plugin som setter et driftsprompt med null prioritet foran agent-prompten.
 
-## Purpose
+## Formål
 
-OpenCode builds its final system prompt in this broad order:
+OpenCode bygger sitt endelige systemprompt omtrent i denne rekkefølgen:
 
 ```text
 agent prompt → environment → Instructions from AGENTS.md
 ```
 
-This plugin keeps OpenCode core behavior intact, but prepends one operator-controlled prompt file at the very front:
+Dette pluginet holder kjerneatferden til OpenCode uendret, men setter én operatørstyrt promptfil helt fremst:
 
 ```text
 0-injection-prompt → agent prompt → environment → instruction
 ```
 
-The default prompt file is `0-injection-prompt.md`.
+Standard promptfil er `0-injection-prompt.md`.
 
-## OpenCode config
+## OpenCode-konfigurasjon
 
 ```json
 {
@@ -58,11 +58,11 @@ The default prompt file is `0-injection-prompt.md`.
 }
 ```
 
-When this repository is checked out separately, either copy it into `~/.config/opencode/plugins/opencode-0-injection` or point the plugin entry at the absolute checkout path.
+Når dette repositoryet sjekkes ut separat, enten kopier det til `~/.config/opencode/plugins/opencode-0-injection` eller pek plugin-oppføringen mot den absolutte utsjekkingsstien.
 
-## Behavior
+## Atferd
 
-The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps the injected prompt with markers so retries or repeated transforms do not accumulate duplicate blocks:
+Pluginet bruker OpenCodes `experimental.chat.system.transform`-hook. Det omslutter det injiserte promptet med markører slik at gjentatte forsøk eller gjentatte transformasjoner ikke samler opp dupliserte blokker:
 
 ```text
 <opencode-0-injection-prompt>
@@ -70,14 +70,16 @@ The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps t
 </opencode-0-injection-prompt>
 ```
 
-## Smoke test
+## Røyktest
 
 ```bash
 npm test
 ```
 
-The smoke test imports the plugin, runs the transform against a synthetic system prompt, and verifies this ordering:
+Røyktesten importerer pluginet, kjører transformasjonen mot et syntetisk systemprompt og verifiserer denne rekkefølgen:
 
 ```text
 0-injection < agent prompt < environment < instruction
 ```
+
+<!-- i18n:source-hash:b60576dd761199a532b6d843576bd127703c42d60086f0dc5c2cecf018b47adb -->

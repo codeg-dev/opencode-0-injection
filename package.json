@@ -1,7 +1,7 @@
 {
   "name": "opencode-0-injection",
   "version": "0.1.0",
-  "description": "Local OpenCode plugin that prepends a priority-zero system prompt before agent prompts.",
+  "description": "OpenCode plugin that prepends a priority-zero operational prompt before the agent prompt via the experimental.chat.system.transform hook.",
   "type": "module",
   "main": "./index.js",
   "exports": {
@@ -9,15 +9,43 @@
       "import": "./index.js"
     }
   },
-  "private": true,
+  "files": [
+    "index.js",
+    "0-injection-prompt.md",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "node test/smoke.mjs"
   },
   "keywords": [
     "opencode",
+    "opencode-plugin",
     "plugin",
     "system-prompt",
-    "rules"
+    "prompt-injection",
+    "rules",
+    "ai"
   ],
-  "license": "MIT"
+  "author": "codeg-dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeg-dev/opencode-0-injection.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codeg-dev/opencode-0-injection/issues"
+  },
+  "homepage": "https://github.com/codeg-dev/opencode-0-injection#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.4.0"
+  },
+  "peerDependenciesMeta": {
+    "@opencode-ai/plugin": {
+      "optional": true
+    }
+  }
 }

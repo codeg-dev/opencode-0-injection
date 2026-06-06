@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>English</strong> |
+  <a href="README.md">English</a> |
   <a href="README.ar.md">العربية</a> |
   <a href="README.bn.md">বাংলা</a> |
   <a href="README.br.md">Português (Brasil)</a> |
@@ -16,7 +16,7 @@
   <a href="README.pl.md">Polski</a> |
   <a href="README.ru.md">Русский</a> |
   <a href="README.th.md">ไทย</a> |
-  <a href="README.tr.md">Türkçe</a> |
+  <strong>Türkçe</strong> |
   <a href="README.uk.md">Українська</a> |
   <a href="README.vi.md">Tiếng Việt</a> |
   <a href="README.zh.md">简体中文</a> |
@@ -25,25 +25,25 @@
 
 # opencode-0-injection
 
-Local OpenCode server plugin that prepends a priority-zero operational prompt before the agent prompt.
+Ajan komut isteminden önce sıfır öncelikli bir operasyonel komut istemi ekleyen yerel OpenCode sunucu eklentisi.
 
-## Purpose
+## Amaç
 
-OpenCode builds its final system prompt in this broad order:
+OpenCode nihai sistem komut istemini kabaca şu sırayla oluşturur:
 
 ```text
 agent prompt → environment → Instructions from AGENTS.md
 ```
 
-This plugin keeps OpenCode core behavior intact, but prepends one operator-controlled prompt file at the very front:
+Bu eklenti OpenCode'un temel davranışını olduğu gibi korur, ancak en başa operatör tarafından kontrol edilen tek bir komut istemi dosyası ekler:
 
 ```text
 0-injection-prompt → agent prompt → environment → instruction
 ```
 
-The default prompt file is `0-injection-prompt.md`.
+Varsayılan komut istemi dosyası `0-injection-prompt.md`'dir.
 
-## OpenCode config
+## OpenCode yapılandırması
 
 ```json
 {
@@ -58,11 +58,11 @@ The default prompt file is `0-injection-prompt.md`.
 }
 ```
 
-When this repository is checked out separately, either copy it into `~/.config/opencode/plugins/opencode-0-injection` or point the plugin entry at the absolute checkout path.
+Bu depo ayrı olarak çekildiğinde, ya `~/.config/opencode/plugins/opencode-0-injection` dizinine kopyalayın ya da eklenti girişini mutlak çekme yoluna yönlendirin.
 
-## Behavior
+## Davranış
 
-The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps the injected prompt with markers so retries or repeated transforms do not accumulate duplicate blocks:
+Eklenti OpenCode'un `experimental.chat.system.transform` kancasını kullanır. Yeniden denemeler veya tekrarlanan dönüşümler yinelenen bloklar biriktirmesin diye, enjekte edilen komut istemini işaretleyicilerle sarar:
 
 ```text
 <opencode-0-injection-prompt>
@@ -70,14 +70,16 @@ The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps t
 </opencode-0-injection-prompt>
 ```
 
-## Smoke test
+## Duman testi
 
 ```bash
 npm test
 ```
 
-The smoke test imports the plugin, runs the transform against a synthetic system prompt, and verifies this ordering:
+Duman testi eklentiyi içe aktarır, dönüşümü sentetik bir sistem komut istemine karşı çalıştırır ve şu sırayı doğrular:
 
 ```text
 0-injection < agent prompt < environment < instruction
 ```
+
+<!-- i18n:source-hash:b60576dd761199a532b6d843576bd127703c42d60086f0dc5c2cecf018b47adb -->

@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>English</strong> |
+  <a href="README.md">English</a> |
   <a href="README.ar.md">العربية</a> |
   <a href="README.bn.md">বাংলা</a> |
   <a href="README.br.md">Português (Brasil)</a> |
@@ -18,32 +18,32 @@
   <a href="README.th.md">ไทย</a> |
   <a href="README.tr.md">Türkçe</a> |
   <a href="README.uk.md">Українська</a> |
-  <a href="README.vi.md">Tiếng Việt</a> |
+  <strong>Tiếng Việt</strong> |
   <a href="README.zh.md">简体中文</a> |
   <a href="README.zht.md">繁體中文</a>
 </p>
 
 # opencode-0-injection
 
-Local OpenCode server plugin that prepends a priority-zero operational prompt before the agent prompt.
+Plugin máy chủ OpenCode cục bộ, đặt một prompt vận hành ưu tiên không trước prompt của tác nhân.
 
-## Purpose
+## Mục đích
 
-OpenCode builds its final system prompt in this broad order:
+OpenCode dựng prompt hệ thống cuối cùng theo thứ tự đại khái như sau:
 
 ```text
 agent prompt → environment → Instructions from AGENTS.md
 ```
 
-This plugin keeps OpenCode core behavior intact, but prepends one operator-controlled prompt file at the very front:
+Plugin này giữ nguyên hành vi cốt lõi của OpenCode, nhưng đặt một tệp prompt do người vận hành kiểm soát lên vị trí đầu tiên:
 
 ```text
 0-injection-prompt → agent prompt → environment → instruction
 ```
 
-The default prompt file is `0-injection-prompt.md`.
+Tệp prompt mặc định là `0-injection-prompt.md`.
 
-## OpenCode config
+## Cấu hình OpenCode
 
 ```json
 {
@@ -58,11 +58,11 @@ The default prompt file is `0-injection-prompt.md`.
 }
 ```
 
-When this repository is checked out separately, either copy it into `~/.config/opencode/plugins/opencode-0-injection` or point the plugin entry at the absolute checkout path.
+Khi kho lưu trữ này được checkout riêng, hãy sao chép nó vào `~/.config/opencode/plugins/opencode-0-injection` hoặc trỏ mục plugin đến đường dẫn checkout tuyệt đối.
 
-## Behavior
+## Hành vi
 
-The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps the injected prompt with markers so retries or repeated transforms do not accumulate duplicate blocks:
+Plugin sử dụng hook `experimental.chat.system.transform` của OpenCode. Nó bao prompt được chèn bằng các dấu đánh dấu để các lần thử lại hoặc các phép biến đổi lặp lại không tích lũy các khối trùng lặp:
 
 ```text
 <opencode-0-injection-prompt>
@@ -70,14 +70,16 @@ The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps t
 </opencode-0-injection-prompt>
 ```
 
-## Smoke test
+## Kiểm thử khói
 
 ```bash
 npm test
 ```
 
-The smoke test imports the plugin, runs the transform against a synthetic system prompt, and verifies this ordering:
+Kiểm thử khói nhập plugin, chạy phép biến đổi trên một prompt hệ thống tổng hợp và xác minh thứ tự này:
 
 ```text
 0-injection < agent prompt < environment < instruction
 ```
+
+<!-- i18n:source-hash:b60576dd761199a532b6d843576bd127703c42d60086f0dc5c2cecf018b47adb -->

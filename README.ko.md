@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>English</strong> |
+  <a href="README.md">English</a> |
   <a href="README.ar.md">العربية</a> |
   <a href="README.bn.md">বাংলা</a> |
   <a href="README.br.md">Português (Brasil)</a> |
@@ -11,7 +11,7 @@
   <a href="README.gr.md">Ελληνικά</a> |
   <a href="README.it.md">Italiano</a> |
   <a href="README.ja.md">日本語</a> |
-  <a href="README.ko.md">한국어</a> |
+  <strong>한국어</strong> |
   <a href="README.no.md">Norsk</a> |
   <a href="README.pl.md">Polski</a> |
   <a href="README.ru.md">Русский</a> |
@@ -25,25 +25,25 @@
 
 # opencode-0-injection
 
-Local OpenCode server plugin that prepends a priority-zero operational prompt before the agent prompt.
+에이전트 프롬프트 앞에 우선순위-0 운영 프롬프트를 prepend 하는 로컬 OpenCode 서버 플러그인.
 
-## Purpose
+## 목적
 
-OpenCode builds its final system prompt in this broad order:
+OpenCode는 최종 시스템 프롬프트를 대략 다음 순서로 구성한다.
 
 ```text
 agent prompt → environment → Instructions from AGENTS.md
 ```
 
-This plugin keeps OpenCode core behavior intact, but prepends one operator-controlled prompt file at the very front:
+이 플러그인은 OpenCode 코어 동작을 그대로 유지하되, 운영자가 통제하는 프롬프트 파일 하나를 맨 앞에 prepend 한다.
 
 ```text
 0-injection-prompt → agent prompt → environment → instruction
 ```
 
-The default prompt file is `0-injection-prompt.md`.
+기본 프롬프트 파일은 `0-injection-prompt.md`이다.
 
-## OpenCode config
+## OpenCode 설정
 
 ```json
 {
@@ -58,11 +58,11 @@ The default prompt file is `0-injection-prompt.md`.
 }
 ```
 
-When this repository is checked out separately, either copy it into `~/.config/opencode/plugins/opencode-0-injection` or point the plugin entry at the absolute checkout path.
+이 저장소를 별도로 체크아웃할 경우, `~/.config/opencode/plugins/opencode-0-injection`로 복사하거나 plugin 항목을 절대 체크아웃 경로로 지정한다.
 
-## Behavior
+## 동작
 
-The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps the injected prompt with markers so retries or repeated transforms do not accumulate duplicate blocks:
+플러그인은 OpenCode의 `experimental.chat.system.transform` 훅을 사용한다. 주입된 프롬프트를 마커로 감싸 재시도나 반복 변환에도 중복 블록이 누적되지 않게 한다.
 
 ```text
 <opencode-0-injection-prompt>
@@ -70,14 +70,16 @@ The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps t
 </opencode-0-injection-prompt>
 ```
 
-## Smoke test
+## 스모크 테스트
 
 ```bash
 npm test
 ```
 
-The smoke test imports the plugin, runs the transform against a synthetic system prompt, and verifies this ordering:
+스모크 테스트는 플러그인을 임포트하고, 합성 시스템 프롬프트에 대해 변환을 실행하여 다음 순서를 검증한다.
 
 ```text
 0-injection < agent prompt < environment < instruction
 ```
+
+<!-- i18n:source-hash:b60576dd761199a532b6d843576bd127703c42d60086f0dc5c2cecf018b47adb -->

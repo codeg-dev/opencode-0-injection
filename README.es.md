@@ -1,12 +1,12 @@
 <p align="center">
-  <strong>English</strong> |
+  <a href="README.md">English</a> |
   <a href="README.ar.md">العربية</a> |
   <a href="README.bn.md">বাংলা</a> |
   <a href="README.br.md">Português (Brasil)</a> |
   <a href="README.bs.md">Bosanski</a> |
   <a href="README.da.md">Dansk</a> |
   <a href="README.de.md">Deutsch</a> |
-  <a href="README.es.md">Español</a> |
+  <strong>Español</strong> |
   <a href="README.fr.md">Français</a> |
   <a href="README.gr.md">Ελληνικά</a> |
   <a href="README.it.md">Italiano</a> |
@@ -25,25 +25,25 @@
 
 # opencode-0-injection
 
-Local OpenCode server plugin that prepends a priority-zero operational prompt before the agent prompt.
+Plugin local del servidor OpenCode que antepone un prompt operativo de prioridad cero antes del prompt del agente.
 
-## Purpose
+## Propósito
 
-OpenCode builds its final system prompt in this broad order:
+OpenCode construye su prompt de sistema final aproximadamente en este orden:
 
 ```text
 agent prompt → environment → Instructions from AGENTS.md
 ```
 
-This plugin keeps OpenCode core behavior intact, but prepends one operator-controlled prompt file at the very front:
+Este plugin mantiene intacto el comportamiento central de OpenCode, pero antepone un archivo de prompt controlado por el operador justo al principio:
 
 ```text
 0-injection-prompt → agent prompt → environment → instruction
 ```
 
-The default prompt file is `0-injection-prompt.md`.
+El archivo de prompt predeterminado es `0-injection-prompt.md`.
 
-## OpenCode config
+## Configuración de OpenCode
 
 ```json
 {
@@ -58,11 +58,11 @@ The default prompt file is `0-injection-prompt.md`.
 }
 ```
 
-When this repository is checked out separately, either copy it into `~/.config/opencode/plugins/opencode-0-injection` or point the plugin entry at the absolute checkout path.
+Cuando este repositorio se clona por separado, cópialo en `~/.config/opencode/plugins/opencode-0-injection` o apunta la entrada del plugin a la ruta absoluta del checkout.
 
-## Behavior
+## Comportamiento
 
-The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps the injected prompt with markers so retries or repeated transforms do not accumulate duplicate blocks:
+El plugin usa el hook `experimental.chat.system.transform` de OpenCode. Envuelve el prompt inyectado con marcadores para que los reintentos o las transformaciones repetidas no acumulen bloques duplicados:
 
 ```text
 <opencode-0-injection-prompt>
@@ -70,14 +70,16 @@ The plugin uses OpenCode's `experimental.chat.system.transform` hook. It wraps t
 </opencode-0-injection-prompt>
 ```
 
-## Smoke test
+## Prueba de humo
 
 ```bash
 npm test
 ```
 
-The smoke test imports the plugin, runs the transform against a synthetic system prompt, and verifies this ordering:
+La prueba de humo importa el plugin, ejecuta la transformación sobre un prompt de sistema sintético y verifica este orden:
 
 ```text
 0-injection < agent prompt < environment < instruction
 ```
+
+<!-- i18n:source-hash:b60576dd761199a532b6d843576bd127703c42d60086f0dc5c2cecf018b47adb -->

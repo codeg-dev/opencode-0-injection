@@ -1,3 +1,22 @@
+# Dependencies
 node_modules/
+
+# OS / editor
 .DS_Store
+
+# Logs
 *.log
+
+# Tooling artifacts (openchrome browser profile cache, OmO run state)
+.openchrome/
+.omo/
+
+# Icon generation intermediates (final icons under assets/icon/ are tracked)
+assets/icon/drafts/
+
+# npm packaging output
+*.tgz
+
+# Secrets / env
+.env
+.env.*
